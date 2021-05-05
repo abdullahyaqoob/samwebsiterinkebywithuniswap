@@ -675,7 +675,7 @@
           <a href="/indexes"><button class="successBtn">Home</button></a>
         </div>
         <div class="copyContractDiv" v-if="tokenContractPopup === true">
-          <p class="copyContractText">Please Copy the token Contract hash and paste it in select a token Search.</p>
+          <p class="copyContractText">Please Copy the mainnet token Contract hash and paste it in select a token button Search.</p>
         </div>
         <div class="checkout">
           <h5
