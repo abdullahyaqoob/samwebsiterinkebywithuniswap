@@ -674,8 +674,8 @@
           </p>
           <a href="/indexes"><button class="successBtn">Home</button></a>
         </div>
-        <div class="copyContractDiv" v-if="tokenContractPopup === true">
-        <!-- <div class="copyContractDiv"> -->
+        <!-- <div class="copyContractDiv" v-if="tokenContractPopup === true"> -->
+        <div class="copyContractDiv">
           <p class="copyContractText">Please Copy the mainnet token Contract hash and paste it in select a token button Search.</p>
         </div>
         <div class="checkout">
