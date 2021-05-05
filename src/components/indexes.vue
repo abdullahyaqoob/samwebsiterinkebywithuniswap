@@ -1817,6 +1817,9 @@ export default {
   .review-btn {
     margin-left: 30px;
   }
+  #curvedArrow{
+  margin-top: 0px;
+}
 }
 @media only screen and (max-width: 1640px) {
   .review-btn {
