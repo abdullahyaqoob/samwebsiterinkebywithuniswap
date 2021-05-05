@@ -1712,7 +1712,7 @@ export default {
   }
 }
 
-@media only screen and (max-width: 360px) {
+@media only screen and (max-width: 380px) {
   #curvedArrow{
     // margin-right: 50px;
     position: relative !important;
@@ -1772,6 +1772,7 @@ export default {
     height: 150px;
     position: relative;
     left: -170px;
+    margin-top: -20px;
   }
   .add-img2 {
     width: 70%;
@@ -1783,15 +1784,17 @@ export default {
   }
 
   .checkout {
-    overflow: auto;
+    // overflow: auto;
     width: 110%;
-    // margin-top: 430px;
+    margin-top: 30px;
     margin-left: 30px;
+    position: inherit;
   }
   .checkoutInfo {
     position: relative;
-    top: -130px;
-    left: -90px;
+    // top: -130px;
+    margin: 0 auto;
+    left: -10px;
   }
   .checkout-div {
     width: 90%;
@@ -1799,7 +1802,7 @@ export default {
   .checkoutInfo {
     width: 90%;
     margin-left: 20px;
-    margin-top: 250px;
+    margin-top: 400px;
   }
   .cross {
     top: 110px;
