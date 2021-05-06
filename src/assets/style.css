@@ -526,7 +526,9 @@ input[type=number] {
     min-width: 20%;
     max-width: 20%;
 }
-
+.imgfont{
+    width: 40px;
+}
 .about-footer {
     text-align: start;
     position: relative;

@@ -520,7 +520,7 @@
             </tr>
           </thead>
           <div v-if="loading" class="loading-div">
-            <img class="loading_class" src="@/assets/spinner.svg" />
+            <img class="loading_class" id="loadingImg" src="@/assets/spinner.svg" />
             <span class="loading_class loading_text">Loading...</span>
           </div>
           <tbody v-else>
@@ -685,7 +685,7 @@
               changeModeIndex === 'lightTheme' ? 'colorBlack' : 'colorWhite'
             "
           >
-            <img :src="furtherCoinDetail.image.small" />
+            <img class="imgfont" :src="furtherCoinDetail.image.small" />
             <span class="fontSizes">{{ furtherCoinDetail.name }}
             <span class="coinSymbol">({{ furtherCoinDetail.symbol }})</span></span>
           </h5>
@@ -1454,6 +1454,9 @@ export default {
     left: 90px;
     min-width: 44%;
     margin-top: 8px;
+  }
+  #loadingImg{
+    display: none;
   }
 }
 @media only screen and (max-width: 900px) {
