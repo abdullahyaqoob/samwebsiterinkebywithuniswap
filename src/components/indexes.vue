@@ -703,7 +703,7 @@
               width="23px"
             />{{ furtherCoinDetail.public_interest_stats.alexa_rank }} people
             take interest in this coin <br /><br /><br />
-            <p>
+            <p v-if="furtherCoinDetail.market_cap_rank !== ''">
               Market Cap:
               <span
                 ><span
@@ -720,7 +720,7 @@
             <p>
               Website:
               <span style="margin-left: 34px"
-                ><span
+                ><span v-if="furtherCoinDetail.links.homepage[0] !== ''"
                   class="infoTokens"
                   :class="
                     changeModeIndex === 'lightTheme'
@@ -729,7 +729,7 @@
                   "
                   >{{ furtherCoinDetail.links.homepage[0] }}</span
                 >
-                <span
+                <span v-if="furtherCoinDetail.links.announcement_url[0] !== ''"
                   class="infoTokens"
                   id="secondWebsiteName"
                   style="margin-left: 2px"
@@ -766,7 +766,7 @@
                 ></span
               >
             </p>
-            <p>
+            <p v-if="tokensmartAddress !== ''">
               Contract:
               <span style="margin-left: 30px"
                 ><span
@@ -817,7 +817,7 @@
                 ></span
               >
             </p>
-            <p>
+            <!-- <p>
               Tags:
               <span style="margin-left: 53px"
                 ><span
@@ -829,16 +829,6 @@
                   "
                   style="color: black"
                   >Token</span
-                >
-                <span
-                  class="infoTokens"
-                  style="margin-left: 2px"
-                  :class="
-                    changeModeIndex === 'lightTheme'
-                      ? 'infoTokensForLightTheme'
-                      : 'infoTokensForDarkTheme'
-                  "
-                  >Index</span
                 >
                 <span
                   class="infoTokens"
@@ -871,7 +861,7 @@
                   >Decentralized Finance (DeFi)</span
                 ></span
               >
-            </p>
+            </p> -->
           </div>
           <!-- <p class="about-footer">
             <span class="totalSupply">Total Supply</span
@@ -1108,6 +1098,7 @@ export default {
         .get(`https://api.coingecko.com/api/v3/coins/${this.indexId}`)
         .then(function (coin) {
           this.page = 'buySell'
+          window.scrollTo(0, 0)
           this.furtherCoinDetail = coin.body
           console.log('furthercoindertatil', this.furtherCoinDetail)
           this.websites = this.furtherCoinDetail.links.homepage[0]
