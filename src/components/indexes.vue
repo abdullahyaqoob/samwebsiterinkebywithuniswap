@@ -686,8 +686,8 @@
             "
           >
             <img :src="furtherCoinDetail.image.small" />
-            {{ furtherCoinDetail.name }}
-            <span class="coinSymbol">({{ furtherCoinDetail.symbol }})</span>
+            <span class="fontSizes">{{ furtherCoinDetail.name }}
+            <span class="coinSymbol">({{ furtherCoinDetail.symbol }})</span></span>
           </h5>
           <div
             class="about-sub-heading"
@@ -1409,6 +1409,9 @@ export default {
     position: relative !important;
     right: 50px !important;
   }
+  .fontSizes{
+    font-size: 17px;
+}
 }
 
 @media only screen and (max-width: 1850px) {
