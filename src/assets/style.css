@@ -522,6 +522,9 @@ input[type=number] {
     padding: 8px 6px;
     margin: 2px 0;
     font-size: 13px;
+    width: 20%;
+    min-width: 20%;
+    max-width: 20%;
 }
 
 .about-footer {

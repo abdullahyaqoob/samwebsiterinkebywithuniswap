@@ -731,6 +731,7 @@
                 >
                 <span
                   class="infoTokens"
+                  id="secondWebsiteName"
                   style="margin-left: 2px"
                   :class="
                     changeModeIndex === 'lightTheme'
@@ -776,7 +777,7 @@
                       : 'infoTokensForDarkTheme'
                   "
                   >{{ tokensmartAddress }}
-                  <!-- <button
+                  <button
                     class="tooltips"
                     v-clipboard:copy="tokensmartAddress"
                     v-clipboard:success="onCopy"
@@ -789,7 +790,7 @@
                       src="../assets/images/content_copy-black-18dp.svg"
                       alt=""
                     />
-                    </button> -->
+                    </button>
                     </span
               ></span>
             </p>
@@ -859,7 +860,7 @@
                   "
                   >TokenSets</span
                 >
-                <span
+                <span id="secondWebsiteName2"
                   class="infoTokens"
                   style="margin-left: 2px"
                   :class="
@@ -954,10 +955,10 @@
 </template>
 
 <script>
-import Web3 from 'web3'
-import { Fetcher, WETH, Route, Trade, TokenAmount, TradeType, Percent } from '@uniswap/sdk'
-import { ethers } from 'ethers'
-import uniswapAbi from '../assets/uniswapAbi.json'
+// import Web3 from 'web3'
+// import { Fetcher, WETH, Route, Trade, TokenAmount, TradeType, Percent } from '@uniswap/sdk'
+// import { ethers } from 'ethers'
+// import uniswapAbi from '../assets/uniswapAbi.json'
 export default {
   name: 'HelloWorld',
   props: {
@@ -1095,11 +1096,9 @@ export default {
       // this.changeModeIndex = mode
     },
     onCopy () {
-      console.log('dslfsdf')
       this.$toasted.success('Address Copied ' + this.tokensmartAddress)
     },
     onError () {
-      console.log('dslfsdf')
       this.$toasted.error('Failed to copy Texts ' + this.tokensmartAddress)
     },
     furtherCoinData (index) {
@@ -1116,8 +1115,7 @@ export default {
           this.tokenContractPopup = true
           setTimeout(() => {
             this.tokenContractPopup = false
-          }, 11000)
-          // this.$toasted.success('Please Copy the token Contract hash and paste it in select a token Search.')
+          }, 12500)
           this.tokensmartAddress = this.furtherCoinDetail.platforms.ethereum
         })
         .catch(error => {
@@ -1132,306 +1130,6 @@ export default {
     },
     commaFunc (number) {
       return number.replace(/(\d)(?=(\d\d\d)+(?!\d))/g, '$1,')
-    },
-    async tokenPrice (e) {
-      const numberRegex = /[0-9]+/
-      if (e.key.match(numberRegex)) {
-        this.swap = 'pending'
-        const chainId = 4
-        const tokenAddress = '0x5592ec0cfb4dbc12d3ab100b257153436a1f0fea'
-        // const chainId = 1
-        // const tokenAddress = this.furtherCoinDetail.platforms.ethereum
-
-        const dai = await Fetcher.fetchTokenData(chainId, tokenAddress)
-        console.log(dai)
-        const weth = WETH[chainId]
-        console.log('weth', weth)
-
-        const pair = await Fetcher.fetchPairData(dai, weth)
-        this.charRegex = /[a-zA-Z]+/
-        console.log('pair', pair)
-
-        const route = new Route([pair], weth)
-        console.log('route', route)
-
-        // if (this.placedAmount > this.withoutPoint) {
-        //   console.log('placedAmount', this.placedAmount)
-        //   console.log('withoutPoint', this.withoutPoint)
-        //   alert('insufficant Balance ' + this.withoutPoint)
-        // } else if (this.placedAmount < this.withoutPoint) {
-        console.log(e.key)
-        const keyPressed = this.placedAmount
-
-        console.log('placedAmount is ', this.placedAmount)
-
-        if (keyPressed.match(/^[1-9]+/)) {
-          console.log('first')
-          this.keyPressedLast = keyPressed + '000000000000000000'
-          console.log('keyPressedLast', this.keyPressedLast)
-
-          const oneDai = new Trade(route, new TokenAmount(weth, 1000000000000000000), TradeType.EXACT_INPUT)
-          console.log('oneDai', oneDai)
-          const oneDaiExecutionPrice = oneDai.executionPrice.toSignificant(6)
-          const priceWithKeyPressed = oneDaiExecutionPrice * keyPressed
-          console.log('priceWithKeyPressed', priceWithKeyPressed)
-          var totalPriceM = priceWithKeyPressed.toString()
-          this.finalPrice = totalPriceM.match(/[0-9]+.[0-9]/).toString()
-          console.log('totalPrice ', this.finalPrice)
-        } else if (keyPressed.match(/^[0][.][1-9]$/)) {
-          console.log('second')
-          const numbAftPoint = keyPressed.substring(2, 3)
-          console.log('numbAftPoint', numbAftPoint)
-          this.keyPressedLast = numbAftPoint + '00000000000000000'
-          console.log('keyPressedLast', this.keyPressedLast)
-
-          const oneDai = new Trade(route, new TokenAmount(weth, 100000000000000000), TradeType.EXACT_INPUT)
-          console.log('oneDai', oneDai)
-          const oneDaiExecutionPrice = oneDai.executionPrice.toSignificant(6)
-          const priceWithKeyPressed = oneDaiExecutionPrice * keyPressed
-          console.log('priceWithKeyPressed', priceWithKeyPressed)
-          var totalPriceMa = priceWithKeyPressed.toString()
-          this.finalPrice = totalPriceMa.match(/[0-9]+.[0-9]/).toString()
-          console.log('totalPrice ', this.finalPrice)
-        } else if (keyPressed.match(/^[0][.][0][1-9]$/)) {
-          console.log('third')
-          const numbAftPoint = keyPressed.substring(3, 4)
-          console.log('numbAftPoint', numbAftPoint)
-          this.keyPressedLast = numbAftPoint + '0000000000000000'
-          console.log('keyPressedLast', this.keyPressedLast)
-
-          const oneDai = new Trade(route, new TokenAmount(weth, 10000000000000000), TradeType.EXACT_INPUT)
-          console.log('oneDai', oneDai)
-          const oneDaiExecutionPrice = oneDai.executionPrice.toSignificant(6)
-          const priceWithKeyPressed = oneDaiExecutionPrice * keyPressed
-          console.log('priceWithKeyPressed', priceWithKeyPressed)
-          var totalPriceMan = priceWithKeyPressed.toString()
-          this.finalPrice = totalPriceMan.match(/[0-9]+.[0-9]/).toString()
-          console.log('totalPrice ', this.finalPrice)
-        } else if (keyPressed.match(/^[0][.][0][0][1-9]$/)) {
-          console.log('fourth')
-          const numbAftPoint = keyPressed.substring(4, 5)
-          console.log('numbAftPoint', numbAftPoint)
-          this.keyPressedLast = numbAftPoint + '000000000000000'
-          console.log('keyPressedLast', this.keyPressedLast)
-
-          const oneDai = new Trade(route, new TokenAmount(weth, 1000000000000000), TradeType.EXACT_INPUT)
-          console.log('oneDai', oneDai)
-          const oneDaiExecutionPrice = oneDai.executionPrice.toSignificant(6)
-          const priceWithKeyPressed = oneDaiExecutionPrice * keyPressed
-          console.log('priceWithKeyPressed', priceWithKeyPressed)
-          var totalPriceManu = priceWithKeyPressed.toString()
-          this.finalPrice = totalPriceManu.match(/[0-9]+.[0-9]/).toString()
-          console.log('totalPrice ', this.finalPrice)
-        } else if (keyPressed.match(/^[0][.][0][0][0][1-9]$/)) {
-          console.log('fifth')
-          const numbAftPoint = keyPressed.substring(5, 6)
-          console.log('numbAftPoint', numbAftPoint)
-          this.keyPressedLast = numbAftPoint + '00000000000000'
-          console.log('keyPressedLast', this.keyPressedLast)
-
-          const oneDai = new Trade(route, new TokenAmount(weth, 100000000000000), TradeType.EXACT_INPUT)
-          console.log('oneDai', oneDai)
-          const oneDaiExecutionPrice = oneDai.executionPrice.toSignificant(6)
-          const priceWithKeyPressed = oneDaiExecutionPrice * keyPressed
-          console.log('priceWithKeyPressed', priceWithKeyPressed)
-          var totalPriceManua = priceWithKeyPressed.toString()
-          this.finalPrice = totalPriceManua.match(/[0-9]+.[0-9]/).toString()
-          console.log('totalPrice ', this.finalPrice)
-        } else {
-          console.log('placedAmount', this.placedAmount)
-          this.$toasted.error('Please write in this form / 1 , 0.1 , 0.01 , 0.001 , 0.0001 /')
-        }
-
-        const trade = new Trade(route, new TokenAmount(weth, this.keyPressedLast), TradeType.EXACT_INPUT)
-        console.log('trade', trade)
-
-        this.totalTokenPrice = trade.executionPrice.toSignificant(6)
-        this.oneTokenPrice = route.midPrice.invert().toSignificant(6)
-
-        console.log('with invert', route.midPrice.invert().toSignificant(6))
-        console.log('trade execution price', trade.executionPrice.toSignificant(6))
-
-        const slippageTolerance = new Percent('50', '10000') //  50 bips = 0.5% 1 bip = 0.001                      //slippage tolerance
-        console.log('slippageTolerance', slippageTolerance)
-
-        const amountOutMin = trade.minimumAmountOut(slippageTolerance).raw
-        console.log('amountOutMin', amountOutMin)
-
-        this.minAmountOut = amountOutMin.toString()
-        console.log('minAmountOut', this.minAmountOut)
-
-        const forValue = trade.inputAmount.raw
-        console.log('value with out string', forValue)
-
-        this.value = forValue.toString()
-        console.log('value with string: ', this.value)
-
-        if (this.ethBalance === '0') {
-          this.swap = 'false'
-        } else {
-          this.swap = 'true'
-        }
-        this.dai = dai
-        this.weth = weth
-        this.tradeIs = trade
-      } else if (e.key.match(this.charRegex)) {
-        console.log('this is character')
-        // alert('Please enter the number')
-      }
-    },
-    async swapIt () {
-      if (this.transactionSuccess === 'false') {
-        setTimeout(() => {
-          this.$toasted.error('Request Timeout!')
-          this.swap = 'true'
-        }, 40000)
-      }
-      if (this.placedAmount === '') {
-        this.$toasted.error('Please first enter the amount.')
-        this.swap = 'true'
-      } else {
-        if (this.placedAmount > this.withoutPoint && !this.placedAmount === '9') {
-        // if (this.placedAmount > this.withoutPoint) {
-          this.swap = 'true'
-          console.log('placedAmount', this.placedAmount)
-          console.log('withoutPoint', this.withoutPoint)
-          this.$toasted.error('insufficant Balance ' + this.withoutPoint)
-        }
-        // } else if (this.withoutPoint > this.placedAmount) {
-        this.swap = 'pending'
-        const path = [this.weth.address, this.dai.address]
-        console.log('path', path)
-
-        // deadline is 20 mnts in seconds
-        const deadline = Math.floor(Date.now() / 1000) + 60 * 20
-        console.log('deadline', deadline)
-
-        const provider = ethers.getDefaultProvider('rinkeby', {
-          infura: 'https://rinkeby.infura.io/v3/38a3d4450c784956877a1bd2fe75c406'
-        })
-        console.log('provider', provider)
-
-        // const signer = new ethers.Wallet('db62a52693de0e6f98ec39b7bb3a12257dd49bb6459899b820ba9f468e99b416');  // acount 2
-        // const signer = new ethers.Wallet('3bd56eea65f9728f2fca4d9f1e5e8499bd1d174dcf10b14dbaebbc6f71bf775a');  // acount 1
-        // const privateKey = '2883ae36fd4bbfc8bf9a27b69b424f59bd356c59a18dab36508e69db38db99cd'   // bahi account 1
-
-        // const privateKey = '693aa3d075665c5d17d83c490716d1753202781a6eb06b578f12399620f99d2a'
-        // // const  = this.resMetamask
-
-        // const signer = new ethers.Wallet(privateKey)
-        // console.log('signer', signer)
-
-        // const account = signer.connect(provider)
-        // console.log('account', account)
-
-        // const uniswap = new ethers.Contract(
-        //   '0x7a250d5630B4cF539739dF2C5dAcb4c659F2488D',
-        //   uniswapAbi,
-        //   account
-        // )
-        // console.log('Uniswap', uniswap)
-
-        const to = this.accountAddress
-        const minAmountOut = this.minAmountOut
-
-        const value = this.value
-
-        // const tx = await uniswap.swapExactETHForTokens(
-        //   minAmountOut,
-        //   path,
-        //   to,
-        //   deadline,
-        //   // {gasLimit: 2000000000000000}
-        //   { value, gasPrice: 20e9 }
-        //   // { value, gasPrice: 20e9 }
-        // )
-
-        const signer = this.resMetamask
-
-        const account = signer.connect(provider)
-        console.log('account', account)
-
-        const routerContract = new ethers.Contract(
-          '0x7a250d5630B4cF539739dF2C5dAcb4c659F2488D',
-          uniswapAbi,
-          account
-        )
-
-        console.log('routerContract', routerContract)
-
-        const tx = await routerContract.swapExactETHForTokens(minAmountOut, path, to, deadline)
-        tx.send({ from: signer }, { value, gasPrice: 20e9 })
-        console.log(`Transaction hash: ${tx.hash}`)
-        this.transactionHash = tx.hash
-        this.transactionSuccess = 'true'
-
-        const receipt = await tx.wait()
-        console.log('only receipts', receipt)
-        console.log('transaction was not mine', receipt.blockNumber)
-
-        this.swap = 'true'
-        // }
-      }
-    },
-    async loadWeb3 () {
-      this.swap = 'pending'
-      if (window.ethereum) {
-        window.web3 = new Web3(window.ethereum)
-        await window.ethereum.enable()
-          .then((res) => {
-            // console.log('response1', res)
-            this.resMetamask = res
-          })
-      } else if (window.web3) {
-        window.web3 = new Web3(window.web3.currentProvider)
-          .then((res) => {
-            console.log('response2', res)
-          })
-      } else {
-        this.swap = 'false'
-        window.alert(
-          'Non-Ethereum browser detected. You should consider trying MetaMask!'
-        )
-      }
-      const web3 = window.web3
-      this.networkId = await web3.eth.net.getId()
-      console.log('networkId', this.networkId)
-
-      if (this.networkId !== 4) {
-        this.$toasted.error('Please login with Rinkeby test network')
-        this.swap = 'false'
-      } else if (this.networkId === 4) {
-        const accounts = await web3.eth.getAccounts()
-        this.accountAddress = accounts[0]
-        console.log('accounts', this.accountAddress)
-
-        this.ethBalance = await web3.eth.getBalance(this.accountAddress)
-        console.log('ethBalance', this.ethBalance)
-        if (this.ethBalance.length === 19) {
-          this.withoutPoint = this.ethBalance.substring(0, 1)
-          console.log('balance without point', this.withoutPoint)
-        } else if (this.ethBalance.length === 20) {
-          this.withoutPoint = this.ethBalance.substring(0, 2)
-          console.log('balance without point', this.withoutPoint)
-        } else if (this.ethBalance.length === 21) {
-          this.withoutPoint = this.ethBalance.substring(0, 3)
-          console.log('balance without point', this.withoutPoint)
-        }
-
-        console.log('response of connection of metamask', this.resMetamask)
-        this.connectWallet = true
-        this.infoDiv = 'connected'
-        this.swap = 'true'
-
-        // Load Token
-
-        // const chainId = ChainId.MAINNET
-        // console.log(chainId)
-        // const tokenAddress = '0x6B175474E89094C44Da98b954EedeAC495271d0F'
-
-        // const tokenData = await Fetcher.fetchTokenData(chainId, tokenAddress)
-        // console.log('tokenData', tokenData)
-      }
     }
   },
   mounted () {
@@ -1561,7 +1259,7 @@ export default {
 }
 // change color site
 .change-color-site {
-  width: auto;
+  width: 45px;
   height: 45px;
   border: none;
   // box-shadow: 0px 1px 40px rgba(50, 50, 93, 0.1), 0 3px 6px rgba(0, 0, 0, 0.08);
@@ -1616,12 +1314,13 @@ export default {
   float: right;
   cursor: pointer;
   position: relative;
-  left: 180px;
-  top: -19px;
+  left: -75px;
+  top: -2px;
   display: inline-block;
   border: none;
   background-color: rgb(255, 251, 243);
   outline: none;
+  border-radius: 5px;
 }
 
 .tooltips .tooltiptexts {
@@ -1707,7 +1406,7 @@ export default {
 #curvedArrow{
   margin-top: -40px;
 }
-@media only screen and (min-width: 1620px) {
+@media only screen and (min-width: 1600px) {
   .add-img {
     margin-left: 350px;
   }
@@ -1744,6 +1443,23 @@ export default {
   }
   .accountBalance{
     top: 6%;
+  }
+}
+
+@media only screen and (max-width: 500px) {
+  #secondWebsiteName{
+    display: block;
+    position: relative;
+    left: 90px;
+    min-width: 46%;
+    margin-top: 8px;
+  }
+  #secondWebsiteName2{
+    display: block;
+    position: relative;
+    left: 90px;
+    min-width: 44%;
+    margin-top: 8px;
   }
 }
 @media only screen and (max-width: 900px) {
