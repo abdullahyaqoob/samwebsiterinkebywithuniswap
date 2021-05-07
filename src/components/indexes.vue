@@ -488,9 +488,7 @@
         <img
           class="add-img2"
           id="darkPageBanner"
-          :class="
-            changeModeIndex === 'lightTheme' ? 'displayNone' : 'displayInherit'
-          "
+          :class="changeModeIndex === 'lightTheme' ? 'displayNone' : 'displayInherit'"
           src="https://i.graphicmama.com/blog/wp-content/uploads/2019/11/01141506/black-web-banner-design.jpg"
           width="1000px"
           height="250px"
@@ -519,8 +517,14 @@
               <th>Mkt Cap</th>
             </tr>
           </thead>
-          <div v-if="loading" class="loading-div">
-            <img class="loading_class" id="loadingImg" src="@/assets/spinner.svg" />
+          <div v-if="loading" class="loading-div" :class="changeModeIndex === 'lightTheme' ? 'displayNone' : 'displayInherit'">
+            <div style="margin-top: 50px" class="spinner-border text-light loading_class" id="loadingImg" role="status">
+          </div>
+            <span class="loading_class loading_text">Loading...</span>
+          </div>
+          <div v-if="loading" class="loading-div" :class="changeModeIndex === 'lightTheme' ? 'displayInherit' : 'displayNone'">
+            <div style="margin-top: 50px" class="spinner-border text-dark loading_class" id="loadingImg" role="status">
+          </div>
             <span class="loading_class loading_text">Loading...</span>
           </div>
           <tbody v-else>
@@ -676,7 +680,7 @@
         </div>
         <div class="copyContractDiv" v-if="tokenContractPopup === true">
         <!-- <div class="copyContractDiv"> -->
-          <p class="copyContractText">Please Copy the mainnet token Contract hash and paste it in select a token button Search.</p>
+          <p class="copyContractText">Please Copy the mainnet token Contract address and paste it in select a token button Search.</p>
         </div>
         <div class="checkout">
           <h5
@@ -776,22 +780,20 @@
                       ? 'infoTokensForLightTheme'
                       : 'infoTokensForDarkTheme'
                   "
-                  >{{ tokensmartAddress }}
-                  <button
-                    class="tooltips"
-                    v-clipboard:copy="tokensmartAddress"
-                    v-clipboard:success="onCopy"
-                    v-clipboard:error="onError"
-                  >
-                    <span class="tooltiptexts" id="myTooltips"
-                      >Copy to clipboard</span
-                    ><img
-                      class="icon-copy"
-                      src="../assets/images/content_copy-black-18dp.svg"
-                      alt=""
-                    />
-                    </button>
-                    </span
+                  >{{ tokensmartAddress }} </span
+                ><button
+                  class="tooltips"
+                  v-clipboard:copy="tokensmartAddress"
+                  v-clipboard:success="onCopy"
+                  v-clipboard:error="onError"
+                >
+                  <span class="tooltiptexts" id="myTooltips"
+                    >Copy to clipboard</span
+                  ><img
+                    class="icon-copy"
+                    src="../assets/images/content_copy-black-18dp.svg"
+                    alt=""
+                  /></button
               ></span>
             </p>
             <p>
@@ -874,6 +876,16 @@
           </p> -->
         </div>
         <div class="checkoutInfo">
+          <div v-if="loadingIframe === true" style="position: absolute; right: 50%; top: 25%">
+            <div class="loading-div" :class="changeModeIndex === 'lightTheme' ? 'displayNone' : 'displayInherit'">
+              <div style="margin-top: 50px" class="spinner-border text-light loading_class" id="loadingImg" role="status">
+            </div>
+            </div>
+            <div class="loading-div" :class="changeModeIndex === 'lightTheme' ? 'displayInherit' : 'displayNone'">
+              <div style="margin-top: 50px" class="spinner-border text-dark loading_class" id="loadingImg" role="status">
+            </div>
+            </div>
+          </div>
        <!-- iframe of uniswap -->
         <iframe
           src="https://app.uniswap.org/#/swap?use=v1?outputCurrency=0x89d24a6b4ccb1b6faa2625fe562bdd9a23260359"
@@ -886,7 +898,7 @@
             border-radius: 10px;
             max-width: 500px;
             min-width: 300px;
-            margin-bottom: 100px
+            margin-bottom: 100px;
           "
           id="myId"
         />
@@ -992,7 +1004,8 @@ export default {
       changeModeIndex: '',
       resMetamask: '',
       tokensmartAddress: '',
-      tokenContractPopup: ''
+      tokenContractPopup: '',
+      loadingIframe: true
     }
   },
   created () {
@@ -1104,6 +1117,9 @@ export default {
           this.websites = this.furtherCoinDetail.links.homepage[0]
           console.log('websites', this.websites)
           this.tokenContractPopup = true
+          setTimeout(() => {
+            this.loadingIframe = false
+          }, 5000)
           setTimeout(() => {
             this.tokenContractPopup = false
           }, 12500)
@@ -1229,11 +1245,11 @@ export default {
   margin: 0 auto;
   position: absolute;
   left: 45%;
-  transform: translateX(-50%);
+  // transform: translateX(-50%);
 }
 
 .loading_text {
-  left: 52%;
+  left: 51%;
   transform: translateX(-50%);
   font-size: 23px;
   margin-top: 50px;
@@ -1302,11 +1318,12 @@ export default {
 }
 
 .tooltips {
-  float: right;
+  // float: right;
   cursor: pointer;
+  margin-left: 5px;
   position: relative;
-  left: -75px;
-  top: -2px;
+  // left: -75px;
+  // top: -2px;
   display: inline-block;
   border: none;
   background-color: rgb(255, 251, 243);
@@ -1496,12 +1513,12 @@ export default {
     border-radius: 5px;
     margin-top: -20px;
   }
-.copyContractDiv{
-  width: 90%;
-  color: white;
-  margin-top: 20px;
-  margin-bottom: -20px;
-}
+  .copyContractDiv{
+    width: 90%;
+    color: white;
+    margin-top: 20px;
+    margin-bottom: -20px;
+  }
   .checkout {
     // overflow: auto;
     width: 110%;
