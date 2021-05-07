@@ -875,7 +875,7 @@
             ><span>$> 1T USD</span>
           </p> -->
         </div>
-        <!-- <div class="checkoutInfo"> -->
+        <div class="checkoutInfo">
           <div v-if="loadingIframe === true" style="position: absolute; right: 50%; top: 25%">
           <div style="position: absolute; right: 50%; top: 25%">
             <div class="loading-div" :class="changeModeIndex === 'lightTheme' ? 'displayNone' : 'displayInherit'">
@@ -886,6 +886,7 @@
               <div style="margin-top: 50px; width: 40px; height: 40px;" class="spinner-border text-dark loading_class" id="loadingImg" role="status">
             </div>
             </div>
+          </div>
           </div>
        <!-- iframe of uniswap -->
         <iframe
