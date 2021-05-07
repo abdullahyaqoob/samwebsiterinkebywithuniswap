@@ -1482,7 +1482,7 @@ export default {
   top: -2px;
   }
 }
-@media only screen and (max-width: 480px) {
+@media only screen and (max-width: 380px) {
   .tooltips{
     float: right;
       position: relative;
