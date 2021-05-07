@@ -1181,7 +1181,8 @@ export default {
 }
 .navbar-nav .nav-link {
   padding-right: 0 !important;
-  padding-left: 15px !important;
+  padding-left: 18px !important;
+  font-family: 'Open Sans', sans-serif;
 }
 .global-status {
   margin-top: -40px;
