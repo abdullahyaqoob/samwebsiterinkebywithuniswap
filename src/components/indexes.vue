@@ -1475,6 +1475,20 @@ export default {
   #loadingImg{
     display: none;
   }
+  .tooltips{
+    float: right;
+      position: relative;
+  left: -75px;
+  top: -2px;
+  }
+}
+@media only screen and (max-width: 480px) {
+  .tooltips{
+    float: right;
+      position: relative;
+  left: -75px;
+  top: -24px;
+  }
 }
 @media only screen and (max-width: 900px) {
   .global-status {
