@@ -1,6 +1,7 @@
 <template>
   <div
-    class="hello" style="overflow: hidden"
+    class="hello"
+    style="overflow: hidden"
     :class="
       changeModeIndex === 'lightTheme'
         ? 'helloForLightTheme'
@@ -51,8 +52,6 @@
               : 'changeColorSiteForDark'
           "
         >
-          <!-- @click="navigateMode('true')"
-               id="changeMode1"   CLASS k aagay likha huwa tah -->
           <span
             class="red-btn"
             :class="
@@ -107,8 +106,6 @@
               : 'changeColorSiteForDark'
           "
         >
-          <!-- @click="navigateMode('true')"
-               id="changeMode1"   CLASS k aagay likha huwa tah -->
           <span
             class="sun-like"
             :class="
@@ -228,12 +225,14 @@
         aria-label="Toggle navigation"
       >
         <i
-          class="fas fa-search" id="marginTopMinusFive"
+          class="fas fa-search"
+          id="marginTopMinusFive"
           :class="changeModeIndex === 'darkTheme' ? 'colorWhite' : 'colorBlack'"
           style="margin-right: 10px"
         ></i>
         <i
-          @click="navigateSidebar('true')" id="marginTopMinusFive"
+          @click="navigateSidebar('true')"
+          id="marginTopMinusFive"
           class="fas fa-bars"
           :class="changeModeIndex === 'darkTheme' ? 'colorWhite' : 'colorBlack'"
         ></i>
@@ -302,8 +301,6 @@
                   : 'changeColorSiteForDark'
               "
             >
-              <!-- @click="navigateMode('true')"
-               id="changeMode1"   CLASS k aagay likha huwa tah -->
               <span
                 class="red-btn"
                 :class="
@@ -362,8 +359,6 @@
                   : 'changeColorSiteForDark'
               "
             >
-              <!-- @click="navigateMode('true')"
-               id="changeMode1"   CLASS k aagay likha huwa tah -->
               <span
                 class="sun-like"
                 :class="
@@ -411,7 +406,8 @@
           </div>
           <a href="/profile" class="nav-item nav-link"
             ><i
-              class="fas fa-user" style="position:relative;top:7px;"
+              class="fas fa-user"
+              style="position: relative; top: 7px"
               :class="
                 changeModeIndex === 'lightTheme' ? 'colorBlack' : 'colorWhite'
               "
@@ -470,11 +466,6 @@
     <div></div>
     <div v-if="page === 'mainPage'">
       <div>
-        <!-- <img
-        src="https://static2.clutch.co/s3fs-public/logos/5122x.png?9LLY4hBhGYxh3oX_CPKPjrYEIRu4AFOS"
-        width="100px"
-        height="100px"
-      /><span style="font-size: 30px; margin-left: 20px">Block360</span -->
         <img
           class="add-img"
           id="lightPageBanner"
@@ -488,7 +479,9 @@
         <img
           class="add-img2"
           id="darkPageBanner"
-          :class="changeModeIndex === 'lightTheme' ? 'displayNone' : 'displayInherit'"
+          :class="
+            changeModeIndex === 'lightTheme' ? 'displayNone' : 'displayInherit'
+          "
           src="https://i.graphicmama.com/blog/wp-content/uploads/2019/11/01141506/black-web-banner-design.jpg"
           width="1000px"
           height="250px"
@@ -517,14 +510,38 @@
               <th>Mkt Cap</th>
             </tr>
           </thead>
-          <div v-if="loading" class="loading-div" :class="changeModeIndex === 'lightTheme' ? 'displayNone' : 'displayInherit'">
-            <div style="margin-top: 50px; width: 40px; height: 40px" class="spinner-border text-light loading_class" id="loadingImg" role="status">
-          </div>
+          <div
+            v-if="loading"
+            class="loading-div"
+            :class="
+              changeModeIndex === 'lightTheme'
+                ? 'displayNone'
+                : 'displayInherit'
+            "
+          >
+            <div
+              style="margin-top: 50px; width: 40px; height: 40px"
+              class="spinner-border text-light loading_class"
+              id="loadingImg"
+              role="status"
+            ></div>
             <span class="loading_class loading_text">Loading...</span>
           </div>
-          <div v-if="loading" class="loading-div" :class="changeModeIndex === 'lightTheme' ? 'displayInherit' : 'displayNone'">
-            <div style="margin-top: 50px; width: 40px; height: 40px" class="spinner-border text-dark loading_class" id="loadingImg" role="status">
-          </div>
+          <div
+            v-if="loading"
+            class="loading-div"
+            :class="
+              changeModeIndex === 'lightTheme'
+                ? 'displayInherit'
+                : 'displayNone'
+            "
+          >
+            <div
+              style="margin-top: 50px; width: 40px; height: 40px"
+              class="spinner-border text-dark loading_class"
+              id="loadingImg"
+              role="status"
+            ></div>
             <span class="loading_class loading_text">Loading...</span>
           </div>
           <tbody v-else>
@@ -571,7 +588,6 @@
                       ? "?"
                       : formatPercent(indexes.price_change_percentage_24h) + "%"
                   }}
-                  <!-- {{ formatPercent(indexes.price_change_percentage_24h) + '%' }} -->
                 </span>
               </td>
               <td>
@@ -626,7 +642,8 @@
           @click="navigatePage('mainPage')"
         >
           <span
-            ><img id="curvedArrow"
+            ><img
+              id="curvedArrow"
               src="https://cdn4.iconfinder.com/data/icons/arrow-68/48/36-512.png"
               width="20px"
               :class="
@@ -636,7 +653,8 @@
               "
           /></span>
           <span
-            ><img id="curvedArrow"
+            ><img
+              id="curvedArrow"
               src="../assets/curvedArrow.png"
               width="20px"
               :class="
@@ -647,7 +665,6 @@
           /></span>
         </div>
         <div class="success" v-if="transactionSuccess === 'true'">
-          <!-- <div class="overLay"></div> -->
           <a href="/indexes"
             ><img src="../assets/images/cross.png" class="crossModel"
           /></a>
@@ -679,8 +696,11 @@
           <a href="/indexes"><button class="successBtn">Home</button></a>
         </div>
         <div class="copyContractDiv" v-if="tokenContractPopup === true">
-        <!-- <div class="copyContractDiv"> -->
-          <p class="copyContractText">Please Copy the mainnet token Contract address and paste it in select a token button Search.</p>
+          <!-- <div class="copyContractDiv"> -->
+          <p class="copyContractText">
+            Please Copy the mainnet token Contract address and paste it in
+            select a token button Search.
+          </p>
         </div>
         <div class="checkout">
           <h5
@@ -690,8 +710,12 @@
             "
           >
             <img class="imgfont" :src="furtherCoinDetail.image.small" />
-            <span class="fontSizes">{{ furtherCoinDetail.name }}
-            <span class="coinSymbol">({{ furtherCoinDetail.symbol }})</span></span>
+            <span class="fontSizes"
+              >{{ furtherCoinDetail.name }}
+              <span class="coinSymbol"
+                >({{ furtherCoinDetail.symbol }})</span
+              ></span
+            >
           </h5>
           <div
             class="about-sub-heading"
@@ -724,7 +748,8 @@
             <p>
               Website:
               <span style="margin-left: 34px"
-                ><span v-if="furtherCoinDetail.links.homepage[0] !== ''"
+                ><span
+                  v-if="furtherCoinDetail.links.homepage[0] !== ''"
                   class="infoTokens"
                   :class="
                     changeModeIndex === 'lightTheme'
@@ -733,7 +758,8 @@
                   "
                   >{{ furtherCoinDetail.links.homepage[0] }}</span
                 >
-                <span v-if="furtherCoinDetail.links.announcement_url[0] !== ''"
+                <span
+                  v-if="furtherCoinDetail.links.announcement_url[0] !== ''"
                   class="infoTokens"
                   id="secondWebsiteName"
                   style="margin-left: 2px"
@@ -819,91 +845,62 @@
                 ></span
               >
             </p>
-            <!-- <p>
-              Tags:
-              <span style="margin-left: 53px"
-                ><span
-                  class="infoTokens"
-                  :class="
-                    changeModeIndex === 'lightTheme'
-                      ? 'infoTokensForLightTheme'
-                      : 'infoTokensForDarkTheme'
-                  "
-                  style="color: black"
-                  >Token</span
-                >
-                <span
-                  class="infoTokens"
-                  style="margin-left: 2px"
-                  :class="
-                    changeModeIndex === 'lightTheme'
-                      ? 'infoTokensForLightTheme'
-                      : 'infoTokensForDarkTheme'
-                  "
-                  >DeFi Index</span
-                >
-                <span
-                  class="infoTokens"
-                  style="margin-left: 2px"
-                  :class="
-                    changeModeIndex === 'lightTheme'
-                      ? 'infoTokensForLightTheme'
-                      : 'infoTokensForDarkTheme'
-                  "
-                  >TokenSets</span
-                >
-                <span id="secondWebsiteName2"
-                  class="infoTokens"
-                  style="margin-left: 2px"
-                  :class="
-                    changeModeIndex === 'lightTheme'
-                      ? 'infoTokensForLightTheme'
-                      : 'infoTokensForDarkTheme'
-                  "
-                  >Decentralized Finance (DeFi)</span
-                ></span
-              >
-            </p> -->
           </div>
-          <!-- <p class="about-footer">
-            <span class="totalSupply">Total Supply</span
-            ><span class="aboutVolume">24 Hour Volume</span
-            ><span class="aboutMarket">Market Cap</span>
-          </p>
-          <p class="about-footers">
-            <span class="gap">ETH</span><span class="gaps">$37.45B USD</span
-            ><span>$> 1T USD</span>
-          </p> -->
         </div>
         <div class="checkoutInfo">
-          <div v-if="loadingIframe === true" style="position: absolute; right: 50%; top: 25%">
-          <div style="position: absolute; right: 50%; top: 25%">
-            <div class="loading-div" :class="changeModeIndex === 'lightTheme' ? 'displayNone' : 'displayInherit'">
-              <div style="margin-top: 50px; width: 40px; height: 40px;" class="spinner-border text-light loading_class" id="loadingImg" role="status">
-            </div>
-            </div>
-            <div class="loading-div" :class="changeModeIndex === 'lightTheme' ? 'displayInherit' : 'displayNone'">
-              <div style="margin-top: 50px; width: 40px; height: 40px;" class="spinner-border text-dark loading_class" id="loadingImg" role="status">
-            </div>
+          <div
+            v-if="loadingIframe === true"
+            style="position: absolute; right: 50%; top: 25%"
+          >
+            <div style="position: absolute; right: 50%; top: 25%">
+              <div
+                class="loading-div"
+                :class="
+                  changeModeIndex === 'lightTheme'
+                    ? 'displayNone'
+                    : 'displayInherit'
+                "
+              >
+                <div
+                  style="margin-top: 50px; width: 40px; height: 40px"
+                  class="spinner-border text-light loading_class"
+                  id="loadingImg"
+                  role="status"
+                ></div>
+              </div>
+              <div
+                class="loading-div"
+                :class="
+                  changeModeIndex === 'lightTheme'
+                    ? 'displayInherit'
+                    : 'displayNone'
+                "
+              >
+                <div
+                  style="margin-top: 50px; width: 40px; height: 40px"
+                  class="spinner-border text-dark loading_class"
+                  id="loadingImg"
+                  role="status"
+                ></div>
+              </div>
             </div>
           </div>
-          </div>
-       <!-- iframe of uniswap -->
-        <iframe
-          src="https://app.uniswap.org/#/swap?use=v1?outputCurrency=0x89d24a6b4ccb1b6faa2625fe562bdd9a23260359"
-          height="650px"
-          width="100%"
-          style="
-            border: 0;
-            margin: 0 auto;
-            display: block;
-            border-radius: 10px;
-            max-width: 500px;
-            min-width: 300px;
-            margin-bottom: 100px;
-          "
-          id="myId"
-        />
+          <!-- iframe of uniswap -->
+          <iframe
+            src="https://app.uniswap.org/#/swap?use=v1?outputCurrency=0x89d24a6b4ccb1b6faa2625fe562bdd9a23260359"
+            height="650px"
+            width="100%"
+            style="
+              border: 0;
+              margin: 0 auto;
+              display: block;
+              border-radius: 10px;
+              max-width: 500px;
+              min-width: 300px;
+              margin-bottom: 100px;
+            "
+            id="myId"
+          />
         </div>
       </div>
     </div>
@@ -938,7 +935,6 @@
         >
       </h6>
       <h6>
-        <!-- <span>@</span> -->
         <span
           class="footerText"
           :class="
@@ -959,10 +955,6 @@
 </template>
 
 <script>
-// import Web3 from 'web3'
-// import { Fetcher, WETH, Route, Trade, TokenAmount, TradeType, Percent } from '@uniswap/sdk'
-// import { ethers } from 'ethers'
-// import uniswapAbi from '../assets/uniswapAbi.json'
 export default {
   name: 'HelloWorld',
   props: {
@@ -978,7 +970,6 @@ export default {
       indexId: '',
       websitesRegex: '',
       websites: '',
-      // filterWebsite: '',
       furtherCoinDetail: {},
       totalTokens: '',
       ethBalance: '0',
@@ -986,25 +977,11 @@ export default {
       swap: 'false',
       networkId: '',
       totalTokenPrice: '',
-      oneTokenPrice: '',
-      tradeIs: '',
-      weth: '',
-      dai: '',
-      amountOutMin: '',
-      minAmountOut: '',
-      slippageTolerance: '',
-      value: '',
       connectWallet: false,
-      placedAmount: '',
-      totalPriceM: '',
-      finalPrice: '',
       transactionHash: '',
       transactionSuccess: 'false',
-      keyPressedLast: '',
-      charRegex: '',
       lightMode: 'true',
       changeModeIndex: '',
-      resMetamask: '',
       tokensmartAddress: '',
       tokenContractPopup: '',
       loadingIframe: true
@@ -1098,7 +1075,6 @@ export default {
     changeIndexMode (mode) {
       localStorage.setItem('WebsiteIndexmode', mode)
       this.changeModeIndex = this.$store.state.changeModeIndexWebsite = mode
-      // this.changeModeIndex = mode
     },
     onCopy () {
       this.$toasted.success('Address Copied ' + this.tokensmartAddress)
@@ -1182,7 +1158,7 @@ export default {
 .navbar-nav .nav-link {
   padding-right: 0 !important;
   padding-left: 18px !important;
-  font-family: 'Open Sans', sans-serif;
+  font-family: "Open Sans", sans-serif;
 }
 .global-status {
   margin-top: -40px;
@@ -1414,7 +1390,7 @@ export default {
   border-radius: 13px;
   margin-left: 220px;
 }
-#curvedArrow{
+#curvedArrow {
   margin-top: -40px;
 }
 @media only screen and (min-width: 1600px) {
@@ -1424,73 +1400,72 @@ export default {
 }
 
 @media only screen and (max-width: 380px) {
-  #curvedArrow{
+  #curvedArrow {
     // margin-right: 50px;
     position: relative !important;
     right: 50px !important;
   }
-  .fontSizes{
+  .fontSizes {
     font-size: 17px;
-}
+  }
 }
 
 @media only screen and (max-width: 1850px) {
-  .accountAddress{
+  .accountAddress {
     top: 5.2%;
   }
-  .accountBalance{
+  .accountBalance {
     top: 5.2%;
   }
-
 }
 @media only screen and (max-width: 1656px) {
-  .accountAddress{
+  .accountAddress {
     top: 5.5%;
   }
-  .accountBalance{
+  .accountBalance {
     top: 5.5%;
   }
 }
 @media only screen and (max-width: 1550px) {
-  .accountAddress{
+  .accountAddress {
     top: 6%;
   }
-  .accountBalance{
+  .accountBalance {
     top: 6%;
   }
 }
 
 @media only screen and (max-width: 500px) {
-  #secondWebsiteName{
+  #secondWebsiteName {
     display: block;
     position: relative;
     left: 90px;
     min-width: 46%;
     margin-top: 8px;
   }
-  #secondWebsiteName2{
+  #secondWebsiteName2 {
     display: block;
     position: relative;
     left: 90px;
     min-width: 44%;
     margin-top: 8px;
   }
-  #loadingImg{
+  #loadingImg {
     display: none;
   }
-  .tooltips{
+  .tooltips {
     float: right;
-      position: relative;
-  left: -75px;
-  top: -2px;
+    position: relative;
+    left: -75px;
+    top: -2px;
   }
 }
 @media only screen and (max-width: 380px) {
-  .tooltips{
+  .tooltips {
     float: right;
-      position: relative;
-  left: -75px;
-  top: -24px;
+    position: relative;
+    left: -75px;
+    top: -24px;
   }
 }
 @media only screen and (max-width: 900px) {
@@ -1501,7 +1476,7 @@ export default {
   .logo-1 {
     display: none;
   }
-  #marginTopMinusFive{
+  #marginTopMinusFive {
     position: relative;
     top: -5px;
   }
@@ -1530,7 +1505,7 @@ export default {
     border-radius: 5px;
     margin-top: -20px;
   }
-  .copyContractDiv{
+  .copyContractDiv {
     width: 90%;
     color: white;
     margin-top: 20px;
@@ -1564,9 +1539,9 @@ export default {
   .review-btn {
     margin-left: 30px;
   }
-  #curvedArrow{
-  margin-top: 0px;
-}
+  #curvedArrow {
+    margin-top: 0px;
+  }
 }
 @media only screen and (max-width: 1640px) {
   .review-btn {

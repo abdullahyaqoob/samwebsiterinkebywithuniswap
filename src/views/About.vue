@@ -1,5 +1,5 @@
 <template>
   <div class="about">
-    <h1>This is an about page</h1>
+    <marquee>This Website is created by FlexLab by Muhammad Abdullah Yaqoob</marquee>
   </div>
 </template>
